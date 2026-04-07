@@ -3,6 +3,7 @@ import MainLayout from "../Layout/MainLayout";
 import Homepage from "../pages/Homepage/Homepage";
 import Books from "../pages/books/Books";
 import ErrorPage from "../pages/errorpage/ErrorPage";
+import BooksDetails from "../pages/bookDetails/BooksDetails";
 
 export const router=createBrowserRouter(
   [
@@ -17,6 +18,10 @@ export const router=createBrowserRouter(
         {
           path: '/books',
           element: <Books/>
+        },
+        {
+          path: '/bookDetails/:id',
+          element: <BooksDetails/>
         }
       ],
       errorElement: <ErrorPage/>
