@@ -8,7 +8,7 @@ const BooksCart = ({ book }) => {
             <Link to={`/bookDetails/${book.bookId}`} className="card bg-base-100 shadow-sm">
                 <div className="p-6">
                     <figure className='p-5 rounded-2xl bg-gray-200'>
-
+                        
                         <img
                             src={book.image}
                             alt={book.bookName}
