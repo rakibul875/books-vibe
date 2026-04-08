@@ -1,9 +1,14 @@
 import React from 'react';
-import { useParams } from 'react-router';
+import { useLoaderData, useParams } from 'react-router';
 
 const BooksDetails = () => {
-    const params=useParams();
-    console.log(params);
+    const { bookId } = useParams();
+
+    const book = useLoaderData();
+
+    const exactBook = book.find(book => book.bookId == bookId);
+    console.log(exactBook)
+
     return (
         <div>
             <h1>Hello im from BooksDetails</h1>
