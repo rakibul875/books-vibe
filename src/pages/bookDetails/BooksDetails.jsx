@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useLoaderData, useParams } from 'react-router';
+import { BookContext } from '../../context/BookProvider';
 
 const BooksDetails = () => {
     const { bookId: bookParamsId } = useParams();
@@ -8,8 +9,11 @@ const BooksDetails = () => {
 
     const exactBook = book.find(book => book.bookId == bookParamsId);
 
-    const { bookId, bookName, author, image, review, totalPages, rating, category, tags, publisher, yearOfPublishing } = exactBook
+    const {bookName, author, image, review, totalPages, rating, category, tags, publisher, yearOfPublishing } = exactBook
 
+    const {handelMarksAsRead ,handelWishlist} = useContext(BookContext)
+   
+    
     return (
         <div className='my-10 container mx-auto'>
             <div className="card lg:card-side bg-base-100 shadow-sm">
@@ -29,10 +33,11 @@ const BooksDetails = () => {
                         <p className='py-2 border-y border-gray-500 text-xl text-gray-400'>{category}</p>
                         <p className='text-2xl font-bold'>Review: <span className='text-xl font-normal text-gray-500'>{review} </span></p>
                         <div className="flex gap-4">
-                            <p className='text-2xl font-bold'>Tag: {tags.map((tag, index) =>
-                                <div key={index} className="badge bg-green-300 text-green-700">{tag}
-                                </div>)}
-                            </p>
+                            <div className='text-2xl font-bold'>Tag:
+                                {tags.map((tag, index) =>
+                                    <p key={index} className="badge bg-green-300 text-green-700">{tag}
+                                    </p>)}
+                            </div>
                         </div>
                         <div className="border-t border-gray-400 space-y-2">
                             <p className='flex justify-start gap-10 text-xl text-gray-500'>Number of Pages: <span className='text-black'>{totalPages}</span></p>
@@ -43,8 +48,8 @@ const BooksDetails = () => {
 
                     </div>
                     <div className="card-actions justify-start mt-5">
-                        <button className="btn btn-outline">Read</button>
-                        <button className="btn btn-accent mx-2">Wishlist</button>
+                        <button className="btn btn-outline" onClick={()=>handelMarksAsRead(exactBook)}>Marks As Read</button>
+                        <button className="btn btn-accent mx-2" onClick={()=>handelWishlist(exactBook)}>Wishlist</button>
                     </div>
                 </div>
             </div>
